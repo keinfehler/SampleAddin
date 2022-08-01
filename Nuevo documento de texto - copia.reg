@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+;Remove previous registration
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}]
+[-HKEY_CURRENT_USER\Software\Classes\SExtensions]

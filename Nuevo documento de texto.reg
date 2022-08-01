@@ -1,0 +1,49 @@
+Windows Registry Editor Version 5.00
+
+;Remove previous registration
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}]
+[-HKEY_CURRENT_USER\Software\Classes\SExtensions]
+
+; New Registration
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}]
+@="MySolidEdgeAddIn1.MyAddIn"
+"AutoConnect"=dword:00000001
+"409"="Solid Edge SExtensions"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\Environment Categories]
+
+; SolidEdge Assembly Environment
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\Environment Categories\{26618395-09d6-11d1-ba07-080036230602}]
+
+; SolidEdge Addin Environment
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\Implemented Categories\{26b1d2d1-2b03-11d2-b589-080036e8b802}]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="MySolidEdgeAddIn1.MyAddIn"
+"Assembly"="MySolidEdgeAddIn1"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///C:/WorkingGIT/MySolidEdgeAddIn1/MySolidEdgeAddIn1/bin/Debug/MySolidEdgeAddIn1.DLL"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\InprocServer32\1.0.0.0]
+"Class"="MySolidEdgeAddIn1.MyAddIn"
+"Assembly"="MySolidEdgeAddIn1"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///C:/WorkingGIT/MySolidEdgeAddIn1/MySolidEdgeAddIn1/bin/Debug/MySolidEdgeAddIn1.DLL"
+
+
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\ProgId]
+@="MySolidEdgeAddIn1"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{33e04e2b-40c7-40fa-8bf3-34a1262b1411}\Summary]
+"409"="Solid Edge Addin in .NET 4.0."
+
+[HKEY_CURRENT_USER\Software\Classes\SExtensions]
+@="MySolidEdgeAddIn1.MyAddIn"
+
+[HKEY_CURRENT_USER\Software\Classes\SExtensions\CLSID]
+@="{33e04e2b-40c7-40fa-8bf3-34a1262b1411}"
