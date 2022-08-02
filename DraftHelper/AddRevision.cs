@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualBasic.CompilerServices;
-using SolidEdgeCommunity.AddIn;
 using SolidEdgeCommunity.Extensions;
 using SolidEdgeDraft;
 using SolidEdgeFileProperties;
@@ -61,7 +60,7 @@ namespace DraftHelper
             AñadirAnuladoPlanoAntiguo(fecha);
             CambiarEscalaPlanoAntiguo();
             DesvincularTextos();
-            //System.Windows.Forms.Application.DoEvents();
+            System.Windows.Forms.Application.DoEvents();
             DesvincularVistas();
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
@@ -74,32 +73,36 @@ namespace DraftHelper
         }
         public static void AñadirRevisionTituloPieza(string revNumber, string fecha)
         {
-            // ISSUE: reference to a compiler-generated method
-            // ISSUE: variable of a compiler-generated type
+
+
             ModelLink modelLink = objDraftDoc.ModelLinks.Item(1);
             // ISSUE: variable of a compiler-generated type
-            //var modelDocument = modelLink.ModelDocument;
+            SolidEdgeDocument modelDocument = null;
             try
             {
+                modelDocument = (SolidEdgeDocument)modelLink.ModelDocument;
+            }
+            catch (Exception ex)
+            {
+                Helpers.ShowException($"{modelLink.FileName} ->> modelLink.ModelDocument == null");
+                return;
+
+                
+            }
+           
+            try
+            {
+                
                 // ISSUE: variable of a compiler-generated type
-                SolidEdgeFileProperties.PropertySets instance = (SolidEdgeFileProperties.PropertySets)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("AED8FE60-3129-11D1-BC83-0800360E1E02")));
-                string fileName = modelLink.FileName;
-                // ISSUE: variable of a boxed type
-                //__Boxed<bool> local1 = (ValueType)false;
+                SolidEdgeFileProperties.PropertySets instance = (SolidEdgeFileProperties.PropertySets)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("AED8FE60-3129-11D1-BC83-0800360E1E02")));
                 // ISSUE: reference to a compiler-generated method
-                instance.Open(fileName, false);
-                // ISSUE: variable of a boxed type
-                //__Boxed<int> local2 = (ValueType)0;
+                instance.Open(modelLink.FileName, (object)false);
                 // ISSUE: variable of a compiler-generated type
-                SolidEdgeFileProperties.Property property = (SolidEdgeFileProperties.Property)((IJProperties)instance[0])[0];
-
-                string str1 = property.ToString();
-                if (str1.Contains(" rev-"))
-                    str1 = str1.Remove(str1.IndexOf(" rev-"));
-
-                string str2 = str1 + string.Format(" rev-{0:00} ", revNumber) + fecha;
-
-                //property[] = (object)str2;
+                SolidEdgeFileProperties.Property property = (SolidEdgeFileProperties.Property)((IJProperties)instance[(object)0])[(object)0];
+                string str = property.Value.ToString();
+                if (str.Contains(" rev-"))
+                    str = str.Remove(str.IndexOf(" rev-"));
+                property.Value = (object)(str + string.Format(" rev-{0:00} ", revNumber) + fecha);
                 // ISSUE: reference to a compiler-generated method
                 instance.Save();
                 // ISSUE: reference to a compiler-generated method
@@ -107,36 +110,31 @@ namespace DraftHelper
             }
             catch (Exception ex1)
             {
-                //ProjectData.SetProjectError(ex1);
+                ProjectData.SetProjectError(ex1);
                 try
                 {
-                    //// ISSUE: variable of a compiler-generated type
-                    //SolidEdgeFramework.PropertySets properties = (SolidEdgeFramework.PropertySets)modelDocument.Properties;
-                    //// ISSUE: variable of a boxed type
-                    //__Boxed<int> local1 = (ValueType)1;
-                    //// ISSUE: reference to a compiler-generated method
-                    //// ISSUE: reference to a compiler-generated method
-                    //// ISSUE: variable of a compiler-generated type
-                    //SolidEdgeFramework.Property property = properties.Item((object)local1).Item((object)1);
-                    //string str = property.Value.ToString();
-                    //if (str.Contains(" rev-"))
-                    //    str = str.Remove(str.IndexOf(" rev-"));
-                    //object obj = (object)(str + string.Format(" rev-{0:00} ", (object)txtRevNumber.Text) + DPFechaRevision.Text);
-                    //// ISSUE: explicit reference operation
-                    //// ISSUE: variable of a reference type
-                    //object&local2 = @obj;
-                    //property.Value = (object)local2;
-                    //// ISSUE: reference to a compiler-generated method
-                    //properties.Save();
-                    //// ISSUE: reference to a compiler-generated method
-                    //modelDocument.Save();
+                    // ISSUE: variable of a compiler-generated type
+                    SolidEdgeFramework.PropertySets properties = (SolidEdgeFramework.PropertySets)modelDocument.Properties;
+                    // ISSUE: reference to a compiler-generated method
+                    // ISSUE: reference to a compiler-generated method
+                    // ISSUE: variable of a compiler-generated type
+                    SolidEdgeFramework.Property property = properties.Item((object)1).Item((object)1);
+                    string str = property.get_Value().ToString();
+                    if (str.Contains(" rev-"))
+                        str = str.Remove(str.IndexOf(" rev-"));
+                    object obj = (object)(str + string.Format(" rev-{0:00} ", (object)revNumber) + fecha);
+                    property.set_Value(ref obj);
+                    // ISSUE: reference to a compiler-generated method
+                    properties.Save();
+                    // ISSUE: reference to a compiler-generated method
+                    modelDocument.Save();
                 }
                 catch (Exception ex2)
                 {
-                    //ProjectData.SetProjectError(ex2);
-                    //ProjectData.ClearProjectError();
+                    ProjectData.SetProjectError(ex2);
+                    ProjectData.ClearProjectError();
                 }
-                //ProjectData.ClearProjectError();
+                ProjectData.ClearProjectError();
             }
         }
         
@@ -206,6 +204,11 @@ namespace DraftHelper
                     }
                 }
             }
+            catch(Exception ex)
+            {
+                Helpers.ShowException(ex);
+            }
+
             finally
             {
                 //IEnumerator enumerator;
@@ -437,8 +440,8 @@ namespace DraftHelper
             }
             catch (Exception ex)
             {
-                //ProjectData.SetProjectError(ex);
-                //ProjectData.ClearProjectError();
+                ProjectData.SetProjectError(ex);
+                ProjectData.ClearProjectError();
             }
         }
         public static void EliminarHojas()
@@ -553,8 +556,78 @@ namespace DraftHelper
             }
             catch (Exception ex)
             {
-                //ProjectData.SetProjectError(ex);
-                //ProjectData.ClearProjectError();
+                ProjectData.SetProjectError(ex);
+                ProjectData.ClearProjectError();
+            }
+        }
+
+        public static void QuitarRevisionTituloPieza()
+        {
+            ModelLink modelLink = objDraftDoc.ModelLinks.Item(1);
+            // ISSUE: variable of a compiler-generated type
+            SolidEdgeDocument modelDocument = null;
+            try
+            {
+                modelDocument = (SolidEdgeDocument)modelLink.ModelDocument;
+            }
+            catch (Exception ex)
+            {
+                Helpers.ShowException($"{modelLink.FileName} ->> modelLink.ModelDocument == null");
+                return;
+
+
+            }
+            try
+            {
+                // ISSUE: variable of a compiler-generated type
+                SolidEdgeFileProperties.PropertySets instance = (SolidEdgeFileProperties.PropertySets)Activator.CreateInstance(System.Type.GetTypeFromCLSID(new Guid("AED8FE60-3129-11D1-BC83-0800360E1E02")));
+                // ISSUE: reference to a compiler-generated method
+                instance.Open(modelLink.FileName, (object)false);
+                // ISSUE: variable of a compiler-generated type
+                SolidEdgeFileProperties.Property property = (SolidEdgeFileProperties.Property)((IJProperties)instance[(object)0])[(object)0];
+                string str1 = property.Value.ToString();
+                if (str1.Contains(" rev-"))
+                {
+                    string str2 = str1.Remove(str1.IndexOf(" rev-"));
+                    property.Value = (object)str2;
+                }
+                // ISSUE: reference to a compiler-generated method
+                instance.Save();
+                // ISSUE: reference to a compiler-generated method
+                instance.Close();
+            }
+            catch (Exception ex1)
+            {
+                ProjectData.SetProjectError(ex1);
+                try
+                {
+                    // ISSUE: variable of a compiler-generated type
+                    SolidEdgeFramework.PropertySets properties = (SolidEdgeFramework.PropertySets)modelDocument.Properties;
+                    // ISSUE: reference to a compiler-generated method
+                    // ISSUE: reference to a compiler-generated method
+                    // ISSUE: variable of a compiler-generated type
+                    SolidEdgeFramework.Property property1 = properties.Item((object)1).Item((object)1);
+                    string str3 = property1.get_Value().ToString();
+                    if (str3.Contains(" rev-"))
+                    {
+                        string str4 = str3.Remove(str3.IndexOf(" rev-"));
+                        // ISSUE: variable of a compiler-generated type
+                        SolidEdgeFramework.Property property2 = property1;
+                        object obj = (object)str4;
+                        ref object local = ref obj;
+                        property2.set_Value(ref local);
+                    }
+                    // ISSUE: reference to a compiler-generated method
+                    properties.Save();
+                    // ISSUE: reference to a compiler-generated method
+                    modelDocument.Save();
+                }
+                catch (Exception ex2)
+                {
+                    ProjectData.SetProjectError(ex2);
+                    ProjectData.ClearProjectError();
+                }
+                ProjectData.ClearProjectError();
             }
         }
 

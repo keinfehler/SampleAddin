@@ -54,7 +54,7 @@ namespace DraftHelper
             {
                 case 0:
                     {
-                        var frm = new RevisionForm();
+                        var frm = new ARevision();
                         frm.Show();
                         
                     }

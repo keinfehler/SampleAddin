@@ -8,7 +8,7 @@
   <tab name="Draft Helper">
     <group name="Tools">
       <!-- Note: imageId is defined in AssemblyInfo.[cs|vb] -->
-      <button id="0" size="large" label="My Button" screentip="My Button Screentip" supertip="My Button Supertip" imageId="100" />
+      <button id="0" size="large" label="Agregar / Eliminar Revisiones" screentip="Agregar / Eliminar Revisiones" supertip="Agregar / Eliminar Revisiones" imageId="200" />
     </group>
   </tab>
 </ribbon>

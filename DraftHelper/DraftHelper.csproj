@@ -89,6 +89,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="res\add_icon-icons.com_52393.png" />
     <Content Include="res\EdgeBar_20x20.png" />
     <Content Include="res\Ribbon_32x32.png" />
   </ItemGroup>
