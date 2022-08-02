@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySolidEdgeAddIn1", "MySoli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DraftHelper", "DraftHelper\DraftHelper.csproj", "{14C51A1C-5032-4A36-8E87-54619618F122}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C51A1C-5032-4A36-8E87-54619618F122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C51A1C-5032-4A36-8E87-54619618F122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C51A1C-5032-4A36-8E87-54619618F122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C51A1C-5032-4A36-8E87-54619618F122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

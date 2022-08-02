@@ -1,0 +1,3 @@
+;Remove previous registration
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}]
+[-HKEY_CURRENT_USER\Software\Classes\DraftHelper]

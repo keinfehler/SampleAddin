@@ -1,0 +1,49 @@
+Windows Registry Editor Version 5.00
+
+;Remove previous registration
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}]
+[-HKEY_CURRENT_USER\Software\Classes\DraftHelper]
+
+; New Registration
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}]
+@="DraftHelper.MyAddIn"
+"AutoConnect"=dword:00000001
+"409"="Solid Edge Draft Helper"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\Environment Categories]
+
+; SolidEdge draft Environment
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\Environment Categories\{08244193-b78d-11d2-9216-00c04f79be98}]
+
+; SolidEdge Addin Environment
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\Implemented Categories\{26b1d2d1-2b03-11d2-b589-080036e8b802}]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\InprocServer32]
+@="mscoree.dll"
+"ThreadingModel"="Both"
+"Class"="DraftHelper.MyAddIn"
+"Assembly"="DraftHelper"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///C:/WorkingGIT/SampleAddin/DraftHelper/bin/Debug/DraftHelper.DLL"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\InprocServer32\1.0.0.0]
+"Class"="DraftHelper.MyAddIn"
+"Assembly"="DraftHelper"
+"RuntimeVersion"="v4.0.30319"
+"CodeBase"="file:///C:/WorkingGIT/SampleAddin/DraftHelper/bin/Debug/DraftHelper.DLL"
+
+
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\ProgId]
+@="DraftHelper.MyAddin"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{9814e0ea-00f9-4019-ab16-be160d60fb69}\Summary]
+"409"="Solid Edge Addin in .NET 4.0."
+
+[HKEY_CURRENT_USER\Software\Classes\DraftHelper]
+@="DraftHelper.MyAddIn"
+
+[HKEY_CURRENT_USER\Software\Classes\DraftHelper\CLSID]
+@="{9814e0ea-00f9-4019-ab16-be160d60fb69}"
