@@ -1,5 +1,6 @@
 ﻿using SolidEdgeCommunity.AddIn;
 using SolidEdgeCommunity.Extensions; // https://github.com/SolidEdgeCommunity/SolidEdge.Community/wiki/Using-Extension-Methods
+using SolidEdgeDraft;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,22 @@ using System.Windows.Forms;
 
 namespace DraftHelper
 {
+    public class Helpers
+    {
+        public static void ShowException(string ex)
+        {
+            Except(ex);
+        }
+        public static void ShowException(Exception ex)
+        {
+            Except(ex.Message);
+        }
+        public static void Except(string ex)
+        {
+            MessageBox.Show(ex);
+        }
+
+    }
     class MyRibbon : SolidEdgeCommunity.AddIn.Ribbon
     {
         private RibbonButton _button1;
@@ -25,7 +42,7 @@ namespace DraftHelper
             _button1 = GetButton(0);
 
             // Example of how to bind a particular ribbon control click event.
-            _button1.Click += _button1_Click;
+            //_button1.Click += _button1_Click;
         }
 
         public override void OnControlClick(RibbonControl control)
@@ -36,14 +53,21 @@ namespace DraftHelper
             switch (control.CommandId)
             {
                 case 0:
+                    {
+                        var frm = new RevisionForm();
+                        frm.Show();
+                        
+                    }
                     break;
             }
         }
 
-        void _button1_Click(RibbonControl control)
-        {
-            var nativeWindow = MyAddIn.Instance.Application.GetNativeWindow();
-            System.Windows.Forms.MessageBox.Show(nativeWindow, control.Label, "RibbonControl", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        //void _button1_Click(RibbonControl control)
+        //{
+        //    var nativeWindow = MyAddIn.Instance.Application.GetNativeWindow();
+        //    System.Windows.Forms.MessageBox.Show(nativeWindow, control.Label, "RibbonControl", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //}
     }
+
+    
 }
