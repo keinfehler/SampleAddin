@@ -1,18 +1,19 @@
-﻿using SolidEdgeCommunity.AddIn;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using SolidEdgeCommunity.AddIn;
 using SolidEdgeCommunity.Extensions;
 using SolidEdgeDraft;
+using SolidEdgeFileProperties;
 using SolidEdgeFramework;
 using SolidEdgeFrameworkSupport;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace DraftHelper
 {
-    class AddRevision
+    public class AddRevision
     {
         public static SolidEdgeFramework.Application objSEApp;
         public static DraftDocument objDraftDoc;
@@ -27,11 +28,16 @@ namespace DraftHelper
         {
             try
             {
-                var app = SolidEdgeAddIn.Instance.Application;
-                var draftDocument = app.GetActiveDocument<DraftDocument>();
+                SolidEdgeFramework.Application application = null;
+                SolidEdgeCommunity.OleMessageFilter.Register();
+                application = SolidEdgeCommunity.SolidEdgeUtils.Connect(true, true);
+                var draftDocument = application.GetActiveDocument<DraftDocument>(false);
+                //var app = SolidEdgeAddIn.Instance.Application;
+                //var draftDocument = app.GetActiveDocument<DraftDocument>();
 
                 if (draftDocument != null)
                 {
+                    AddRevision.objSEApp = application;
                     AddRevision.objDraftDoc = draftDocument;
                     AddRevision.objSheet = draftDocument.ActiveSheet;
                 }
@@ -42,15 +48,7 @@ namespace DraftHelper
                 Helpers.ShowException(ex);
             }
 
-            try
-            {
-                AddRevision.ObtenerTablaRevisiones();
-            }
-            catch (Exception ex)
-            {
-
-                Helpers.ShowException(ex);
-            }
+         
         }
         public static void Add(string revisionNumber, string fecha, string autor, string description)
         {
@@ -71,38 +69,41 @@ namespace DraftHelper
             AñadirRevisionFechaPlanoRevisado(revisionNumber, fecha);
             // ISSUE: reference to a compiler-generated method
             objDraftDoc.Sections.BackgroundSection.Deactivate();
-            AñadirRevisionTituloPieza();
-            ObtenerUltimaRevision();
+            AñadirRevisionTituloPieza(revisionNumber, fecha);
+            //ObtenerUltimaRevision();
         }
-        public static void AñadirRevisionTituloPieza()
+        public static void AñadirRevisionTituloPieza(string revNumber, string fecha)
         {
             // ISSUE: reference to a compiler-generated method
             // ISSUE: variable of a compiler-generated type
-            ModelLink modelLink = objDraftDoc.ModelLinks.Item((object)1);
+            ModelLink modelLink = objDraftDoc.ModelLinks.Item(1);
             // ISSUE: variable of a compiler-generated type
-            SolidEdgeDocument modelDocument = (SolidEdgeDocument)modelLink.ModelDocument;
+            //var modelDocument = modelLink.ModelDocument;
             try
             {
-                //// ISSUE: variable of a compiler-generated type
-                //SolidEdgeFileProperties.PropertySets instance = (SolidEdgeFileProperties.PropertySets)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("AED8FE60-3129-11D1-BC83-0800360E1E02")));
-                //string fileName = modelLink.FileName;
-                //// ISSUE: variable of a boxed type
+                // ISSUE: variable of a compiler-generated type
+                SolidEdgeFileProperties.PropertySets instance = (SolidEdgeFileProperties.PropertySets)Activator.CreateInstance(Type.GetTypeFromCLSID(new Guid("AED8FE60-3129-11D1-BC83-0800360E1E02")));
+                string fileName = modelLink.FileName;
+                // ISSUE: variable of a boxed type
                 //__Boxed<bool> local1 = (ValueType)false;
-                //// ISSUE: reference to a compiler-generated method
-                //instance.Open(fileName, (object)local1);
-                //// ISSUE: variable of a boxed type
+                // ISSUE: reference to a compiler-generated method
+                instance.Open(fileName, false);
+                // ISSUE: variable of a boxed type
                 //__Boxed<int> local2 = (ValueType)0;
-                //// ISSUE: variable of a compiler-generated type
-                //SolidEdgeFileProperties.Property property = (SolidEdgeFileProperties.Property)((IJProperties)instance[(object)local2])[(object)0];
-                //string str1 = property[].ToString();
-                //if (str1.Contains(" rev-"))
-                //    str1 = str1.Remove(str1.IndexOf(" rev-"));
-                //string str2 = str1 + string.Format(" rev-{0:00} ", (object)txtRevNumber.Text) + DPFechaRevision.Text;
+                // ISSUE: variable of a compiler-generated type
+                SolidEdgeFileProperties.Property property = (SolidEdgeFileProperties.Property)((IJProperties)instance[0])[0];
+
+                string str1 = property.ToString();
+                if (str1.Contains(" rev-"))
+                    str1 = str1.Remove(str1.IndexOf(" rev-"));
+
+                string str2 = str1 + string.Format(" rev-{0:00} ", revNumber) + fecha;
+
                 //property[] = (object)str2;
-                //// ISSUE: reference to a compiler-generated method
-                //instance.Save();
-                //// ISSUE: reference to a compiler-generated method
-                //instance.Close();
+                // ISSUE: reference to a compiler-generated method
+                instance.Save();
+                // ISSUE: reference to a compiler-generated method
+                instance.Close();
             }
             catch (Exception ex1)
             {
@@ -140,118 +141,9 @@ namespace DraftHelper
         }
         
 
-        public static void ObtenerTablaRevisiones()
-        {
-            // ISSUE: variable of a compiler-generated type
-            Tables tables = objDraftDoc.Tables;
-            bool flag = false;
-            int count1 = tables.Count;
-            int num1 = 1;
-            while (num1 <= count1)
-            {
-                // ISSUE: reference to a compiler-generated method
-                int count2 = tables.Item((object)num1).Titles.Count;
-                int num2 = 1;
-                while (num2 <= count2)
-                {
-                    // ISSUE: reference to a compiler-generated method
-                    // ISSUE: reference to a compiler-generated method
-                    if (string.Compare(tables.Item((object)num1).Titles.Item((object)num2).value, "Histórico de Revisiones", false) == 0)
-                    {
-                        // ISSUE: reference to a compiler-generated method
-                        tablarevisiones = tables.Item((object)num1);
-                        flag = true;
-                        break;
-                    }
-                    checked { ++num2; }
-                }
-                checked { ++num1; }
-            }
-            if (!flag)
-            {
-                activar = false;
-                Helpers.ShowException("Abra un documento de Solid Edge Plano válido\r\r      (Edición 6 o superior)");
-                //int num2 = (int)Interaction.MsgBox((object)"Abra un documento de Solid Edge Plano válido\r\r      (Edición 6 o superior)", MsgBoxStyle.Critical, (object)null);
-            }
-            else
-                ObtenerUltimaRevision();
-        }
+       
 
-        public static void ObtenerUltimaRevision()
-        {
-            //TODO RE
-            //int count = tablarevisiones.Rows.Count;
-            //int num1 = 1;
-            //while (num1 <= count)
-            //{
-            //    // ISSUE: reference to a compiler-generated method
-            //    if (string.Compare(tablarevisiones.get_Cell((object)num1, (object)1).value, "", false) == 0)
-            //    {
-            //        if (num1 == 1)
-            //        {
-            //            ObtenerAutorFecha();
-            //            // ISSUE: reference to a compiler-generated method
-            //            tablarevisiones.get_Cell((object)num1, (object)1).value = "00";
-            //            // ISSUE: reference to a compiler-generated method
-            //            tablarevisiones.get_Cell((object)num1, (object)2).value = FechaPlano;
-            //            // ISSUE: reference to a compiler-generated method
-            //            tablarevisiones.get_Cell((object)num1, (object)3).value = AutorPlano;
-            //            // ISSUE: reference to a compiler-generated method
-            //            tablarevisiones.get_Cell((object)num1, (object)4).value = "Creación del Plano";
-            //            // ISSUE: reference to a compiler-generated method
-            //            tablarevisiones.Update();
-
-            //            txtRevNumber.Text = "01";
-
-            //            AutorPlano = (string)null;
-            //            FechaPlano = (string)null;
-            //            break;
-            //        }
-            //        // ISSUE: reference to a compiler-generated method
-            //        txtRevNumber.Text = string.Format("{0:00}", (object)(Convert.ToDouble(tablarevisiones.get_Cell((object)checked(num1 - 1), (object)1).value) + 1.0));
-            //        break;
-            //    }
-            //    if (num1 == tablarevisiones.Rows.Count)
-            //    {
-            //        txtRevNumber.Text = "##";
-            //        btnAddRevision.Enabled = false;
-            //        DPFechaRevision.Enabled = false;
-            //        cb_Autor.Enabled = false;
-            //        txtDescripcion.Enabled = false;
-            //        activar = false;
-            //        Helpers.ShowException("Se ha alcanzado el número máximo de revisiones");
-            //        //int num2 = (int)Interaction.MsgBox((object)"Se ha alcanzado el número máximo de revisiones", MsgBoxStyle.Critical, (object)"Número máximo de revisiones alcanzado");
-            //    }
-            //    checked { ++num1; }
-            //}
-            //if (string.Compare(txtRevNumber.Text, "01", false) == 0)
-            //    btnDelRevision.Enabled = false;
-            //else
-            //    btnDelRevision.Enabled = true;
-        }
-
-        public static void ObtenerAutorFecha()
-        {
-            try
-            {
-                // ISSUE: reference to a compiler-generated method
-                //TODO RE
-                //foreach (object balloon in (IEnumerable)objDraftDoc.Sheets.Item((object)"DFT").Background.Balloons)
-                //{
-                //    object objectValue = RuntimeHelpers.GetObjectValue(balloon);
-                //    if (Operators.ConditionalCompareObjectEqual(NewLateBinding.LateGet(objectValue, (Type)null, "BalloonText", new object[0], (string[])null, (Type[])null, (bool[])null), (object)"%{Autores|R1}", false))
-                //        AutorPlano = Conversions.ToString(NewLateBinding.LateGet(objectValue, (Type)null, "BalloonDisplayedText", new object[0], (string[])null, (Type[])null, (bool[])null));
-                //    if (Operators.ConditionalCompareObjectEqual(NewLateBinding.LateGet(objectValue, (Type)null, "BalloonText", new object[0], (string[])null, (Type[])null, (bool[])null), (object)"%{FechaPlano|R1}", false))
-                //        FechaPlano = Conversions.ToString(NewLateBinding.LateGet(objectValue, (Type)null, "BalloonDisplayedText", new object[0], (string[])null, (Type[])null, (bool[])null));
-                //}
-            }
-            finally
-            {
-                //IEnumerator enumerator;
-                //if (enumerator is IDisposable)
-                //    (enumerator as IDisposable).Dispose();
-            }
-        }
+       
 
         public static void AñadirRevisionTabla(string revisionNumber, string fecha, string autor, string description)
         {
@@ -339,35 +231,35 @@ namespace DraftHelper
             // ISSUE: reference to a compiler-generated method
             // ISSUE: reference to a compiler-generated method
             objDraftDoc.Sheets.Item((object)HojaPlanoAntiguo).Activate();
+
             
-            //TODO RE
-            //NewLateBinding.LateCall(objSEApp.ActiveWindow, (Type)null, "Paste", new object[0], (string[])null, (Type[])null, (bool[])null, true);
+            NewLateBinding.LateCall(objSEApp.ActiveWindow, (Type)null, "Paste", new object[0], (string[])null, (Type[])null, (bool[])null, true);
         }
 
         public static void CambiarEscalaPlanoAntiguo()
         {
             try
             {
-                var balloons = objDraftDoc.Sheets.Item((object)HojaPlanoAntiguo).Balloons as IEnumerable<object>;
+                var balloons = objDraftDoc.Sheets.Item((object)HojaPlanoAntiguo).Balloons as IEnumerable;
                 // ISSUE: reference to a compiler-generated method
                 foreach (object balloon in balloons)
                 {
-                    //TODO RE
-                    //object objectValue = RuntimeHelpers.GetObjectValue(balloon);
+                    
+                    object objectValue = RuntimeHelpers.GetObjectValue(balloon);
 
-                    //if (Operators.ConditionalCompareObjectEqual(NewLateBinding.LateGet(objectValue, (Type)null, "BalloonText", new object[0], (string[])null, (Type[])null, (bool[])null), (object)"%{Escala de la hoja}", false))
-                    //{
-                    //    double PaperRatioComponent;
-                    //    double ModelRatioComponent;
-                    //    // ISSUE: reference to a compiler-generated method
-                    //    // ISSUE: reference to a compiler-generated method
-                    //    objDraftDoc.Sheets.Item((object)"DFT").SheetSetup.GetDefaultDrawingViewScale(out PaperRatioComponent, out ModelRatioComponent);
-                    //    NewLateBinding.LateSet(objectValue, (Type)null, "BalloonText", new object[1]
-                    //    {
-                    //(object) (Convert.ToString(ModelRatioComponent) + ":" + Convert.ToString(1.0 / PaperRatioComponent))
-                    //    }, (string[])null, (Type[])null);
-                    //    break;
-                    //}
+                    if (Operators.ConditionalCompareObjectEqual(NewLateBinding.LateGet(objectValue, (Type)null, "BalloonText", new object[0], (string[])null, (Type[])null, (bool[])null), (object)"%{Escala de la hoja}", false))
+                    {
+                        double PaperRatioComponent;
+                        double ModelRatioComponent;
+                        // ISSUE: reference to a compiler-generated method
+                        // ISSUE: reference to a compiler-generated method
+                        objDraftDoc.Sheets.Item((object)"DFT").SheetSetup.GetDefaultDrawingViewScale(out PaperRatioComponent, out ModelRatioComponent);
+                        NewLateBinding.LateSet(objectValue, (Type)null, "BalloonText", new object[1]
+                        {
+                    (object) (Convert.ToString(ModelRatioComponent) + ":" + Convert.ToString(1.0 / PaperRatioComponent))
+                        }, (string[])null, (Type[])null);
+                        break;
+                    }
                 }
             }
             finally
@@ -396,16 +288,15 @@ namespace DraftHelper
         {
             try
             {
-                //TODO RE
-                // ISSUE: reference to a compiler-generated method
-                //foreach (object balloon in (IEnumerable)objDraftDoc.Sheets.Item((object)HojaPlanoAntiguo).Balloons)
-                //{
-                //    object objectValue = RuntimeHelpers.GetObjectValue(balloon);
-                //    NewLateBinding.LateSet(objectValue, (Type)null, "BalloonText", new object[1]
-                //    {
-                //        NewLateBinding.LateGet(objectValue, (Type) null, "balloonDisplayedText", new object[0], (string[]) null, (Type[]) null, (bool[]) null)
-                //    }, (string[])null, (Type[])null);
-                //}
+
+                foreach (object balloon in (IEnumerable)objDraftDoc.Sheets.Item((object)HojaPlanoAntiguo).Balloons)
+                {
+                    object objectValue = RuntimeHelpers.GetObjectValue(balloon);
+                    NewLateBinding.LateSet(objectValue, (Type)null, "BalloonText", new object[1]
+                    {
+                        NewLateBinding.LateGet(objectValue, (Type) null, "balloonDisplayedText", new object[0], (string[]) null, (Type[]) null, (bool[]) null)
+                    }, (string[])null, (Type[])null);
+                }
             }
             finally
             {
@@ -452,7 +343,9 @@ namespace DraftHelper
         {
             try
             {
-                var textBoxes = objDraftDoc.Sheets.Item((object)HojaPlanoAntiguo).TextBoxes as IEnumerable<TextBox>;
+                var textBoxes1 = objDraftDoc.Sheets.Item((object)HojaPlanoAntiguo).TextBoxes;
+                var textBoxes = textBoxes1 as IEnumerable;
+                    //as IEnumerable<TextBox>;
 
                 // ISSUE: reference to a compiler-generated method
                 foreach (SolidEdgeFrameworkSupport.TextBox textBox in textBoxes)

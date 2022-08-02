@@ -36,6 +36,7 @@
     <Reference Include="Interop.SolidEdge, Version=220.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Interop.SolidEdge.220.2.0\lib\net40\Interop.SolidEdge.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="SolidEdge.Community, Version=219.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SolidEdge.Community.219.0.0\lib\net40\SolidEdge.Community.dll</HintPath>
     </Reference>
