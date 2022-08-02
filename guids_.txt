@@ -1,0 +1,9 @@
+bad41b8d-18ff-42c9-9611-8a00e6921ae8
+
+
+SolidEdgeSDK.EnvironmentCategories.Application = {26618394-09d6-11d1-ba07-080036230602}
+SolidEdgeSDK.EnvironmentCategories.AllDocumentEnvrionments = {bad41b8d-18ff-42c9-9611-8a00e6921ae8}
+
+application = [0] = {26618394-09d6-11d1-ba07-080036230602}
+draft [1] = {08244193-b78d-11d2-9216-00c04f79be98}
+assembly [2] = {26618395-09d6-11d1-ba07-080036230602}

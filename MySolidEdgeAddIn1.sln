@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.28803.916
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySolidEdgeAddIn1", "MySolidEdgeAddIn1\MySolidEdgeAddIn1.csproj", "{9EA895C5-E875-4500-91D5-6A3A6D5C43E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9EA895C5-E875-4500-91D5-6A3A6D5C43E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EA895C5-E875-4500-91D5-6A3A6D5C43E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EA895C5-E875-4500-91D5-6A3A6D5C43E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4CBE45F-184E-4FE6-87FF-BD63428DB65C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
