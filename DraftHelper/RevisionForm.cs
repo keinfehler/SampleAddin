@@ -34,16 +34,21 @@ namespace DraftHelper
                 DraftHelper.Helpers.ShowException(ex);
             }
 
-            
-
-            
         }
+        public void EndForm()
+        {
+            Close();
+        }
+
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
             AddRevision.Add(txtRevNumber.Text, txtFecha.Text, txtAutor.Text, txtDescripcion.Text);
 
             ObtenerTablaRevisiones();
+            EndForm();
         }
 
         public void ObtenerTablaRevisiones()
@@ -172,6 +177,8 @@ namespace DraftHelper
             DraftHelper.AddRevision.objDraftDoc.Sheets.Item((object)"DFT").Activate();
             DraftHelper.AddRevision.QuitarRevisionTituloPieza();
             ObtenerUltimaRevision();
+
+            EndForm(); 
         }
       
     }

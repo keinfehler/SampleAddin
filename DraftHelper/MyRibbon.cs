@@ -55,7 +55,7 @@ namespace DraftHelper
                 case 0:
                     {
                         var frm = new ARevision();
-                        frm.Show();
+                        frm.ShowDialog();
                         
                     }
                     break;
