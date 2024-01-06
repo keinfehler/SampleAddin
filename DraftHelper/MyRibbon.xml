@@ -22,32 +22,32 @@
 		  <button id="1"
 			   size="large"
 			   label="Pieza"
-			   screentip="Guarda"
-			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   screentip="Actualiza por FONDO Pieza"
+			   supertip="Cambia todos los fondos de las hojas.&#13;&#13;Elimina capas vacias:&#13;&#13;Ajusta vistas al guardar."
 			   imageId="1"
 			   enabled="true" />
 		  
 		  <button id="2"
 			   size="large"
 			   label="Conjunto"
-			   screentip="Guarda"
-			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   screentip="Actualiza por FONDO Conjunto"
+			   supertip="Cambia todos los fondos de las hojas.&#13;&#13;Elimina capas vacias:&#13;&#13;Ajusta vistas al guardar."
 			   imageId="2"
 			   enabled="true" />
 
 		  <button id="3"
 			   size="large"
 			   label="Comercial"
-			   screentip="Guarda"
-			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   screentip="Actualiza por FONDO Comercial"
+			   supertip="Cambia todos los fondos de las hojas.&#13;&#13;Elimina capas vacias:&#13;&#13;Ajusta vistas al guardar."
 			   imageId="3"
 			   enabled="true" />
 
 		  <button id="4"
 			   size="large"
 			   label="Replanteo"
-			   screentip="Guarda"
-			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   screentip="Actualiza por FONDO Replanteo"
+			   supertip="Cambia todos los fondos de las hojas.&#13;&#13;Elimina capas vacias:&#13;&#13;Ajusta vistas al guardar."
 			   imageId="4"
 			   enabled="true" />
 		  
@@ -57,9 +57,9 @@
 
 		  <button id="5"
 			   size="large"
-			   label="Pieza"
-			   screentip="Convertir"
-			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   label="2D"
+			   screentip="Crea PDF / DXF"
+			   supertip="Por defecto , guarda los archivos en el mismo directorio del original."
 			   imageId="5"
 			   enabled="true" />
 

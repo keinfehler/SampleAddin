@@ -97,6 +97,12 @@
     <Content Include="res\CMD57601.png" />
     <Content Include="res\EdgeBar_20x20.png" />
     <Content Include="res\Ribbon_32x32.png" />
+    <Content Include="res\SyN-.png" />
+    <Content Include="res\SyN-Comercial.png" />
+    <Content Include="res\SyN-Conjunto.png" />
+    <Content Include="res\SyN-conve.png" />
+    <Content Include="res\SyN-pieza.png" />
+    <Content Include="res\SyN-Replanteo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SolidEdge.Community.AddIn.109.0.0\build\net40\SolidEdge.Community.AddIn.targets" Condition="Exists('..\packages\SolidEdge.Community.AddIn.109.0.0\build\net40\SolidEdge.Community.AddIn.targets')" />
