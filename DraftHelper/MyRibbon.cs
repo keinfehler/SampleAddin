@@ -63,44 +63,42 @@ namespace DraftHelper
 
                 case 1:
                     {
-                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+                        System.Diagnostics.Process.Start("X:/CAD/CONFIGURACIONES/SOLID/macros/08-SyN-CambioFondos/08 - FormatoPieza/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
 
                     }
                     break;
 
                 case 2:
                     {
-                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+                        System.Diagnostics.Process.Start("X:/CAD/CONFIGURACIONES/SOLID/macros/08-SyN-CambioFondos/08 - FormatoConjunto/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
 
                     }
                     break;
 
                 case 3:
                     {
-                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+                        System.Diagnostics.Process.Start("X:/CAD/CONFIGURACIONES/SOLID/macros/08-SyN-CambioFondos/08 - FormatoComercial/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
 
                     }
                     break;
 
                 case 4:
                     {
-                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+                        System.Diagnostics.Process.Start("X:/CAD/CONFIGURACIONES/SOLID/macros/08-SyN-CambioFondos/08 - FormatoReplanteo/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
 
                     }
                     break;
 
                 case 5:
                     {
-                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/Conversion.exe"); //ubicacion donde esta el ejecutable)
+                        System.Diagnostics.Process.Start("X:/CAD/CONFIGURACIONES/SOLID/macros/08-SyN-CambioFondos/08 - FormatoPieza/PlugIns/Conversion.exe"); //ubicacion donde esta el ejecutable)
 
                     }
                     break;
 
                 case 6:
                     {
-                        //SolidEdgeFramework.Application objApp = (SolidEdgeFramework.Application)Marshal.GetActiveObject("SolidEdge.Application");
-                        //objApp.StartCommand((SolidEdgeFramework.SolidEdgeCommandConstants)40080);
-
+ 
                         var activeDocument = SolidEdgeAddIn.Instance.Application.ActiveDocument as SolidEdgeDocument;
 
                         var activeDocumentFullName = activeDocument.FullName;
