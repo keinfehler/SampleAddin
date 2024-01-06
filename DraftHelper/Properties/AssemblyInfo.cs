@@ -6,7 +6,12 @@ using System.Runtime.InteropServices;
 // BMP|PNG images that will be embedded as Win32 resources after build.
 [assembly: NativeResource(1, @"res\EdgeBar_20x20.png")]
 [assembly: NativeResource(100, @"res\Ribbon_32x32.png")]
-[assembly: NativeResource(200, @"res\add_icon-icons.com_52393.png")]
+[assembly: NativeResource(1, @"res\CMD10409.png")]
+[assembly: NativeResource(2, @"res\CMD10409.png")]
+[assembly: NativeResource(3, @"res\CMD10409.png")]
+[assembly: NativeResource(4, @"res\CMD10409.png")]
+[assembly: NativeResource(5, @"res\CMD10409.png")]
+[assembly: NativeResource(6, @"res\CMD57601.png")]
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information

@@ -1,6 +1,7 @@
 ﻿using SolidEdgeCommunity.AddIn;
 using SolidEdgeCommunity.Extensions; // https://github.com/SolidEdgeCommunity/SolidEdge.Community/wiki/Using-Extension-Methods
 using SolidEdgeDraft;
+using SolidEdgeFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,6 +85,28 @@ namespace DraftHelper
                 case 4:
                     {
                         System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+
+                    }
+                    break;
+
+                case 5:
+                    {
+                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/Conversion.exe"); //ubicacion donde esta el ejecutable)
+
+                    }
+                    break;
+
+                case 6:
+                    {
+                        //SolidEdgeFramework.Application objApp = (SolidEdgeFramework.Application)Marshal.GetActiveObject("SolidEdge.Application");
+                        //objApp.StartCommand((SolidEdgeFramework.SolidEdgeCommandConstants)40080);
+
+                        var activeDocument = SolidEdgeAddIn.Instance.Application.ActiveDocument as SolidEdgeDocument;
+
+                        var activeDocumentFullName = activeDocument.FullName;
+                        var activeDocumentDirectoryName = System.IO.Path.GetDirectoryName(activeDocumentFullName);
+
+                        System.Diagnostics.Process.Start(activeDocumentDirectoryName);
 
                     }
                     break;

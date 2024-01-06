@@ -24,7 +24,7 @@
 			   label="Pieza"
 			   screentip="Guarda"
 			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
-			   imageId="200"
+			   imageId="1"
 			   enabled="true" />
 		  
 		  <button id="2"
@@ -32,7 +32,7 @@
 			   label="Conjunto"
 			   screentip="Guarda"
 			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
-			   imageId="200"
+			   imageId="2"
 			   enabled="true" />
 
 		  <button id="3"
@@ -40,7 +40,7 @@
 			   label="Comercial"
 			   screentip="Guarda"
 			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
-			   imageId="200"
+			   imageId="3"
 			   enabled="true" />
 
 		  <button id="4"
@@ -48,9 +48,33 @@
 			   label="Replanteo"
 			   screentip="Guarda"
 			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
-			   imageId="200"
+			   imageId="4"
 			   enabled="true" />
 		  
+	  </group>
+
+	  <group name="Conversion">
+
+		  <button id="5"
+			   size="large"
+			   label="Pieza"
+			   screentip="Convertir"
+			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   imageId="5"
+			   enabled="true" />
+
+	  </group>
+	  
+	  <group name="Visualizar">
+
+		  <button id="6"
+			   size="large"
+			   label="Directorio Trabajo"
+			   screentip="Abre directorio de trabajo"
+			   supertip="Abre el directorio de trabajo del documento activo."
+			   imageId="6"
+			   enabled="true" />
+
 	  </group>
   </tab>
 </ribbon>
