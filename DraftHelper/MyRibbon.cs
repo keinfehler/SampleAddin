@@ -59,6 +59,34 @@ namespace DraftHelper
                         
                     }
                     break;
+
+                case 1:
+                    {
+                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+
+                    }
+                    break;
+
+                case 2:
+                    {
+                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+
+                    }
+                    break;
+
+                case 3:
+                    {
+                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+
+                    }
+                    break;
+
+                case 4:
+                    {
+                        System.Diagnostics.Process.Start("C:/Pixel/PixelBatch/PlugIns/CambioCajetines.exe"); //ubicacion donde esta el ejecutable)
+
+                    }
+                    break;
             }
         }
 

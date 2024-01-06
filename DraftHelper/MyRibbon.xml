@@ -5,10 +5,52 @@
   https://github.com/SolidEdgeCommunity/SolidEdge.Community/wiki/Package-Manager-Console-Powershell-Reference#install-solidedgeaddinribbonschema
 -->
 <ribbon xmlns="http://github.com/SolidEdgeCommunity/SolidEdge/Ribbon">
-  <tab name="Draft Helper">
-    <group name="Tools">
-      <!-- Note: imageId is defined in AssemblyInfo.[cs|vb] -->
-      <button id="0" size="large" label="Agregar / Eliminar Revisiones" screentip="Agregar / Eliminar Revisiones" supertip="Agregar / Eliminar Revisiones" imageId="200" />
-    </group>
+  <tab name="SyN-Draft">
+    <!--<group name="Revisiones">
+
+      <button id="0" 
+			  size="large" 
+			  label="Agregar / Eliminar Revisiones" 
+			  screentip="Agregar / Eliminar Revisiones" 
+			  supertip="Agregar / Eliminar Revisiones" 
+			  imageId="200"
+		      enabled="true" />		  
+	</group>-->
+
+	  <group name="Sustituir Fondo">
+
+		  <button id="1"
+			   size="large"
+			   label="Pieza"
+			   screentip="Guarda"
+			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   imageId="200"
+			   enabled="true" />
+		  
+		  <button id="2"
+			   size="large"
+			   label="Conjunto"
+			   screentip="Guarda"
+			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   imageId="200"
+			   enabled="true" />
+
+		  <button id="3"
+			   size="large"
+			   label="Comercial"
+			   screentip="Guarda"
+			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   imageId="200"
+			   enabled="true" />
+
+		  <button id="4"
+			   size="large"
+			   label="Replanteo"
+			   screentip="Guarda"
+			   supertip="Guarda todos los niveles.&#13;&#13;Oculta todo menos el cuerpo de diseño:&#13;&#13;Posiciona Vista Isometrica."
+			   imageId="200"
+			   enabled="true" />
+		  
+	  </group>
   </tab>
 </ribbon>
